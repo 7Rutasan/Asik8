@@ -52,3 +52,22 @@ document.getElementById("service4").innerText = programs[3];
 document.getElementById("service5").innerText = programs[4];
 
 
+let prices = [];
+
+prices.push((priceService1 * tax).toFixed());
+prices.push((priceService2 * tax).toFixed());
+prices.push((priceService3 * tax).toFixed());
+prices.push((priceService4 * tax).toFixed());
+prices.push((priceService5 * tax).toFixed());
+
+let indices = prices.map((_, index) => index);
+
+indices.sort((a, b) => prices[b] - prices[a]);
+
+const sortedNames = indices.map(index => programs[index]);
+const sortedPrices = indices.map(index => prices[index]);
+
+sortedNames.forEach((name, index) => {
+    document.getElementById(`price${index + 1}`).innerText = `Price: $${sortedPrices[index]}`;
+    document.getElementById(`service${index + 1}`).innerText = name;
+});
